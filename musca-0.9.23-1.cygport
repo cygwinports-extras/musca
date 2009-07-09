@@ -1,0 +1,16 @@
+DESCRIPTION="X11 dynamic window manager"
+HOMEPAGE="http://aerosuidae.net/musca/Source"
+SRC_URI="http://aerosuidae.net/${P}.tgz"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	verbose ${CC} ${CFLAGS} ${LDFLAGS} -o musca.exe musca.c -lX11 || error "build failed"
+}
+
+src_install() {
+	cd ${B}
+	dobin musca.exe
+	doman musca.1
+	dodoc gpl.txt
+}
